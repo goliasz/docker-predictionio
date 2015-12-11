@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:14.04
 MAINTAINER Piotr Goliasz <piotr.goliasz@kolibero.eu>
 
 ENV PIO_VERSION 0.9.5
