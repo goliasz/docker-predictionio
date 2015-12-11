@@ -8,9 +8,9 @@ ENV HBASE_VERSION 1.0.0
 
 ENV PIO_HOME /PredictionIO-${PIO_VERSION}
 ENV PATH=${PIO_HOME}/bin:$PATH
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
-RUN apt-get update && apt-get install -y curl openjdk-8-jdk libgfortran3 python-pip
+RUN apt-get update && apt-get install -y curl openjdk-7-jdk libgfortran3 python-pip
 RUN pip install predictionio
 
 RUN curl -O https://d8k1yxp8elc6b.cloudfront.net/PredictionIO-${PIO_VERSION}.tar.gz
