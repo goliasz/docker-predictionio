@@ -7,7 +7,7 @@ docker build .<br>
 
 ## Docker Hub readme
 ### How to run
-docker run --hostname pio1 --name pio1 -it -p 8000:8000 -p 7070:7070 -p 7071:7071 -p 7072:7072 -v $HOME/MyEngine:/MyEngine goliasz/docker-predictionio /bin/bash
+docker run --hostname pio1 --privileged=true --name pio1 -it -p 8000:8000 -p 7070:7070 -p 7071:7071 -p 7072:7072 -v $HOME/MyEngine:/MyEngine goliasz/docker-predictionio /bin/bash
 
 ### Inside docker
 root@pio1:/# pio-start-all
