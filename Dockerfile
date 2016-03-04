@@ -31,6 +31,7 @@ RUN tar -xvzf PredictionIO-${PIO_VERSION}.tar.gz -C / && mkdir -p ${PIO_HOME}/ve
 RUN rm PredictionIO-${PIO_VERSION}.tar.gz
 ADD files/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
 
+# Spark part
 RUN curl -O http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
 RUN tar -xvzf spark-${SPARK_VERSION}-bin-hadoop2.6.tgz -C ${PIO_HOME}/vendors
 RUN rm spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
