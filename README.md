@@ -10,7 +10,7 @@ docker build .
 ### How to run
 ```
 mkdir $HOME/MyEngine
-docker run --hostname pio1 --name pio1 -it -v $HOME/MyEngine:/MyEngine goliasz/docker-predictionio:dev1.6.1 /bin/bash
+docker run --hostname pio1 --name pio1 -it -v $HOME/MyEngine:/MyEngine goliasz/docker-predictionio-dev:dev1.6.1 /bin/bash
 ```
 
 ### Inside docker
