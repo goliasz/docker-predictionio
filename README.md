@@ -1,3 +1,5 @@
+[![](https://images.microbadger.com/badges/image/goliasz/docker-predictionio-dev.svg)](https://microbadger.com/images/goliasz/docker-predictionio-dev "Get your own image badge on microbadger.com")
+
 # docker-predictionio
 PredictionIO docker container
 ## How to build local image
