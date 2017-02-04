@@ -23,6 +23,10 @@ ENV PIO_HOME /PredictionIO-${PIO_VERSION}
 ENV PATH=${PIO_HOME}/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
+RUN apt-get -y update
+RUN apt-get -y -q install software-properties-common
+RUN add-apt-repository ppa:openjdk-r/ppa
+
 RUN apt-get update \
     && apt-get install -y curl openjdk-8-jdk libgfortran3 python-pip \
     && apt-get clean \
