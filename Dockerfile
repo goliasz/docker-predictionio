@@ -14,22 +14,30 @@
 FROM ubuntu:14.04
 MAINTAINER Piotr Goliasz <piotr.goliasz@kolibero.eu>
 
-ENV PIO_VERSION 0.9.5
+ENV PIO_VERSION 0.10.0
 ENV SPARK_VERSION 1.6.1
 ENV ELASTICSEARCH_VERSION 1.4.4
 ENV HBASE_VERSION 1.0.0
 
 ENV PIO_HOME /PredictionIO-${PIO_VERSION}
 ENV PATH=${PIO_HOME}/bin:$PATH
-ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
-RUN apt-get update && apt-get install -y curl openjdk-7-jdk libgfortran3 python-pip
-RUN pip install predictionio
+RUN apt-get update \
+    && apt-get install -y --auto-remove --no-install-recommends curl openjdk-8-jdk libgfortran3 python-pip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://d8k1yxp8elc6b.cloudfront.net/PredictionIO-${PIO_VERSION}.tar.gz
-RUN tar -xvzf PredictionIO-${PIO_VERSION}.tar.gz -C / && mkdir -p ${PIO_HOME}/vendors
-RUN rm PredictionIO-${PIO_VERSION}.tar.gz
-ADD files/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
+RUN curl -O http://mirror.nexcess.net/apache/incubator/predictionio/${PIO_VERSION}-incubating/apache-predictionio-${PIO_VERSION}-incubating.tar.gz \
+    && tar -xvzf apache-predictionio-${PIO_VERSION}-incubating.tar.gz -C / \
+    && rm apache-predictionio-${PIO_VERSION}-incubating.tar.gz \
+    && cd apache-predictionio-${PIO_VERSION}-incubating \
+&& ./make-distribution.sh
+
+RUN tar zxvf /apache-predictionio-${PIO_VERSION}-incubating/PredictionIO-${PIO_VERSION}-incubating.tar.gz -C /
+RUN rm -r /apache-predictionio-${PIO_VERSION}-incubating
+RUN mkdir /${PIO_HOME}/vendors
+COPY files/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
 
 # Spark part
 RUN curl -O http://www-eu.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
